@@ -1,0 +1,25 @@
+BUCKET=lanl-earthquake-gpu-large
+PROJECT=lanl-earthquake-234413
+REGION=us-central1
+TFVERSION=1.13
+
+gcloud config set project $PROJECT
+gcloud config set compute/region $REGION
+
+OUTDIR=gs://${BUCKET}/keras_90000_conv_lstm_model
+JOBNAME=lanlearthquake_$(date -u +%y%m%d_%H%M%S)
+
+
+gcloud ml-engine jobs submit training $JOBNAME \
+  --region=$REGION \
+  --module-name=src.task \
+  --package-path=$(pwd)/src/ \
+  --job-dir=$OUTDIR \
+  --staging-bucket=gs://$BUCKET \
+  --config ml_engine_config.yml \
+  --runtime-version=$TFVERSION \
+  -- \
+  --bucket=${BUCKET} \
+  --output_dir=${OUTDIR} \
+  --batch_size=256 \
+  --train_examples=6712

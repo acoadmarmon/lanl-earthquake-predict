@@ -1,0 +1,11 @@
+BUCKET=lanl-earthquake-kaggle-competition
+PROJECT=primeval-door-196115
+OUTDIR=keras_outputasdf
+
+python -m src.task \
+  --bucket=${BUCKET} \
+  --output_dir=${OUTDIR} \
+  --job-dir=$OUTDIR \
+  --train_examples=24000 \
+  --batch_size=3 \
+  --mode=PREDICT
