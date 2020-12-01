@@ -11,7 +11,3 @@ I tried many different approaches to train a model to predict when an earthquake
 - 1D CNN feature extractor -> LSTM prediction
 - Convolutional LSTM (CNN applied to each step in the LSTM to create a low dimensional feature representation that is passed forward to future LSTM steps)
 - Chunked Manual Feature Extraction (100, 1000, 10000 signal example chunks) -> LSTM
-
-
-## Results:
-TBD
